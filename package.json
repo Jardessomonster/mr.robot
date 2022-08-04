@@ -1,0 +1,36 @@
+{
+  "name": "send-sms",
+  "version": "1.0.0",
+  "description": "This CLI program will catch a csv file with phone numbers end sens sms's to them",
+  "main": "./build/cli.js",
+  "bin": {
+    "sms": "./build/cli.js"
+  },
+  "keywords": [
+    "sms"
+  ],
+  "files": [
+    "/build"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "dev": "npx ts-node -r dotenv/config -r tsconfig-paths/register cli.ts",
+    "package": "pkg . --targets node16-linux-x64 --output bin/sms"
+  },
+  "pkg": {
+    "scripts": "build/**/*.js"
+  },
+  "author": "jrjar",
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "@types/node": "^18.6.3",
+    "dotenv": "^16.0.1",
+    "typescript": "^4.7.4",
+    "yup": "^0.32.11"
+  },
+  "devDependencies": {
+    "pkg": "^5.8.0",
+    "tsconfig-paths": "^4.0.0"
+  }
+}
