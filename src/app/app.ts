@@ -1,7 +1,12 @@
 import { CreateNumbersCommand } from '../commands/createNumbers'
+
 import { CommandDto } from '../dto/common/command.dto'
-import logger from '../helpers/logger'
+
+import { SqliteDB } from '../providers/database'
+
 import { Command } from './@types/commands'
+
+import logger from '../helpers/logger'
 
 export class CliMapper {
   async getCommand(command: Command): Promise<void> {
@@ -29,6 +34,11 @@ export class CliMapper {
 }
 
 ;(async () => {
+  const db = new SqliteDB().connection
+  db.close()
+  // wait in case of first run
+  await new Promise(resolve => setTimeout(resolve, 1000))
+
   const commandFromTerminal: any = process.argv.splice(2)
   const command = CommandDto.from(commandFromTerminal)
 
