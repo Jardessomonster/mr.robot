@@ -11,7 +11,7 @@ export class CreateCampaignRepostiory extends BaseRepository {
         campaign
       ORDER BY
         id
-        DESC
+      DESC
     `
     const campaign = await this.get<CampaignModel.Base>(sql)
     if (!campaign) 

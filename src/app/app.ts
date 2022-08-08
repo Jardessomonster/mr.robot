@@ -8,6 +8,8 @@ import { Command } from './@types/commands'
 
 import logger from '../helpers/logger'
 
+import { SendMessageService } from '../services/twilio/sendMessage'
+
 export class CliMapper {
   async getCommand(command: Command): Promise<void> {
     const {
@@ -21,7 +23,7 @@ export class CliMapper {
         await new CreateNumbersCommand().execute(create)
       }
       else if (send) {
-        
+        new SendMessageService().execute()
       }
       else if (list) {
 
