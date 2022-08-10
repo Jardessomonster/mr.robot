@@ -20,7 +20,6 @@ export class SqliteDB {
           logger.log(`Creating one...`)
           return new CreateDatabaseRepository().execute()
         }
-        logger.success(`Connected to the database`)
       }
     )
 

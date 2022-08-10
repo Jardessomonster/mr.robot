@@ -1,11 +1,21 @@
 import { BaseTwilioService } from './baseTwilio'
 
-export class SendMessageService extends BaseTwilioService{
-  execute(): void {
+import { MessageContract } from '../../models/message/contract'
+
+import { GetCampaignRepository } from '../../repositories/campaign/get'
+
+export class SendMessageService extends BaseTwilioService
+implements MessageContract.SendMessageService {
+  async execute({ id, msg }: MessageContract.Inputs.ToSend): Promise<void> {
+    const campaign = await new GetCampaignRepository().execute(id)
+    
+    if (!campaign)
+      throw new Error(`Campaign of id: ${id} does not exist`)
+    
     this.client.messages
       .create({
-        from: 'whatsapp:+14155238886',
-        body: 'Hello world!',
+        from: `whatsapp:${process.env.SENDER}`,
+        body: msg,
         to: 'whatsapp:+556899652210'
       }).then(msg => console.log(msg))
   }

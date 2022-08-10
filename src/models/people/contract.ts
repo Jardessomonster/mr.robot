@@ -19,4 +19,8 @@ export namespace PeopleContracts {
   export interface CreateNumbersByCsv {
     execute(input: Inputs.ToCreateNumbers): Promise<void>
   }
+
+  export interface ListCreated {
+    execute(): Promise<void>
+  }
 }

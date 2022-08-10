@@ -9,7 +9,7 @@ import { CreateCampaignRepostiory } from '../repositories/campaign/create'
 
 import logger from '../helpers/logger'
 
-export class CreateNumebersService implements PeopleContracts.CreateNumbersByCsv{
+export class CreateService implements PeopleContracts.CreateNumbersByCsv {
   async execute({ file, name }: PeopleContracts.Inputs.ToCreateNumbers): Promise<void> {
     logger.log('Creating people by csv...')
     const peopleToCreate = CsvFileDto.read(file)

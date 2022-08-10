@@ -37,9 +37,9 @@ export class BaseRepository {
     return model
   }
 
-  all<T>(sql: string, params: any[] = []): Promise<T | null>{
-    const model = new Promise<T | null>((res, rej) => {
-      this.db.all(sql, params, (err: any, result: T) => {
+  all<T>(sql: string, params: any[] = []): Promise<T[] | null>{
+    const model = new Promise<T[] | null>((res, rej) => {
+      this.db.all(sql, params, (err: any, result: T[]) => {
         if (err) {
           logger.error(err)
           rej(err)

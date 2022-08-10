@@ -12,12 +12,12 @@ const log = (msg: string) => {
   console.log(COLORS.DEFAULT, msg);
 };
 
-const success = (msg?: string) => {
-  console.log(COLORS.GREEN, `✅ ${msg}`);
+const success = (msg?: string, ...args: any[]) => {
+  console.log(COLORS.GREEN, `✅ ${msg}`, ...args);
 };
 
-const error = (msg?: string) => {
-  console.error(COLORS.RED, `🚨 ${msg}`);
+const error = (msg?: string, ...args: any[]) => {
+  console.error(COLORS.RED, `🚨 ${msg}`, ...args);
 };
 
 export default {
