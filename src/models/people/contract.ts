@@ -1,3 +1,4 @@
+import { CampaignModel } from "../campaign/model"
 import { PeopleModel } from "./model"
 
 export namespace PeopleContracts {
@@ -21,6 +22,6 @@ export namespace PeopleContracts {
   }
 
   export interface ListCreated {
-    execute(): Promise<void>
+    execute(): Promise<CampaignModel.Base[]>
   }
 }

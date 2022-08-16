@@ -8,7 +8,7 @@ export class CsvFileDto {
     const file = readFileSync(path, 'utf-8')
     const numbers = file.split('\n').map(
       (number): PeopleModel.ToCreate => {
-        const phone = Number(number.trim())
+        const phone = number.trim()
         return {
           phone,
           name: 'Recol Customer'

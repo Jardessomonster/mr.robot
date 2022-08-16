@@ -1,45 +1,30 @@
-import { CreateCommand } from '../commands/create'
-
-import { CommandDto } from '../dto/common/command.dto'
+import express from 'express'
 
 import { SqliteDB } from '../providers/database'
-
-import { Command } from './@types/commands'
+import { WhatsappProvider } from '../providers/whatsapp'
 
 import logger from '../helpers/logger'
 
-import { SendCommand } from '../commands/send'
-import { ListCommand } from '../commands/list'
-import { HelpCommand } from '../commands/help'
+import { entryPoint } from './routes'
 
-export class CliMapper {
-  async getCommand(command: Command): Promise<void> {
-    const {
-      create,
-      send,
-      list
-    } = command
-    // mapping all actions
-    try {
-      if (create) {
-        await new CreateCommand().execute(create)
-        return
-      }
-      else if (send) {
-        await new SendCommand().execute(send)
-        return
-      }
-      else if (list) {
-        await new ListCommand().execute()
-        return
-      }
+export class Application {
+  constructor() {
+    this.initiatlize()
+  }
 
-      new HelpCommand().execute()
-    }
-    catch (err) {
-      logger.error('Error: ', err)
-      new HelpCommand().execute()
-    }
+  private async initiatlize() {
+    const app = express()
+    const port = process.env.PORT ?? 3000
+    // initialize whatsapp client
+    const client = await new WhatsappProvider().connect()
+
+    app.use(express.json())
+    app.use(express.urlencoded({ extended: true }))
+    app.use(entryPoint(client))
+
+    app.listen(port, () => {
+      logger.success(`Server running on: http://localhost:${port}`)
+    })
   }
 }
 
@@ -49,10 +34,5 @@ export class CliMapper {
   db.close()
   // wait in case of first run
   await new Promise(resolve => setTimeout(resolve, 1000))
-
-  const commandFromTerminal: any = process.argv.splice(2)
-  const command = CommandDto.from(commandFromTerminal)
-
-  const mapper = new CliMapper()
-  await mapper.getCommand(command)
+  new Application()
 }) ()

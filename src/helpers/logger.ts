@@ -8,8 +8,8 @@ export const COLORS = {
   RED: resetAfterLog('\x1b[31m')
 };
 
-const log = (msg: string) => {
-  console.log(COLORS.DEFAULT, msg);
+const log = (msg: string, ...args: any[]) => {
+  console.log(COLORS.DEFAULT, msg, ...args);
 };
 
 const success = (msg?: string, ...args: any[]) => {

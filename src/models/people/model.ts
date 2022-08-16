@@ -1,7 +1,7 @@
 export namespace PeopleModel {
   export interface Base {
     name: string
-    phone: number
+    phone: string
   }
 
   export type ToCreate = Base

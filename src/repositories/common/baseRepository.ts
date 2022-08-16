@@ -33,12 +33,12 @@ export class BaseRepository {
         res(result)
       })
     })
-
+    this.db.close()
     return model
   }
 
-  all<T>(sql: string, params: any[] = []): Promise<T[] | null>{
-    const model = new Promise<T[] | null>((res, rej) => {
+  all<T>(sql: string, params: any[] = []): Promise<T[] | []>{
+    const model = new Promise<T[] | []>((res, rej) => {
       this.db.all(sql, params, (err: any, result: T[]) => {
         if (err) {
           logger.error(err)
@@ -48,7 +48,7 @@ export class BaseRepository {
         res(result)
       })
     })
-
+    this.db.close()
     return model
   }
 }

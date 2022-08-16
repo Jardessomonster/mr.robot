@@ -1,24 +1,14 @@
 {
-  "name": "send-sms",
+  "name": "mr.robot",
   "version": "1.0.0",
-  "description": "This CLI program will catch a csv file with phone numbers end sens sms's to them",
-  "main": "./build/cli.js",
-  "bin": {
-    "sms": "./build/cli.js"
-  },
-  "keywords": [
-    "sms"
-  ],
+  "description": "This web program will catch a csv file with phone numbers end sens sms's to them",
+  "main": "./build/server.js",
   "files": [
     "/build"
   ],
   "scripts": {
     "build": "tsc",
-    "dev": "npx ts-node -r dotenv/config -r tsconfig-paths/register cli.ts",
-    "package": "pkg . --targets node16-linux-x64 --output bin/sms"
-  },
-  "pkg": {
-    "scripts": "build/**/*.js"
+    "dev": "npx ts-node -r dotenv/config -r tsconfig-paths/register server.ts"
   },
   "author": "jrjar",
   "license": "MIT",
@@ -26,14 +16,17 @@
   "dependencies": {
     "@types/node": "^18.6.3",
     "dotenv": "^16.0.1",
+    "express": "^4.18.1",
+    "express-promise-router": "^4.1.1",
+    "fastq": "^1.13.0",
     "sqlite3": "^5.0.11",
-    "twilio": "^3.80.0",
     "typescript": "^4.7.4",
+    "venom-bot": "^4.3.0",
     "yup": "^0.32.11"
   },
   "devDependencies": {
+    "@types/express": "^4.17.13",
     "@types/sqlite3": "^3.1.8",
-    "pkg": "^5.8.0",
     "tsconfig-paths": "^4.0.0"
   }
 }

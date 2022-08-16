@@ -2,7 +2,8 @@ export namespace MessageContract {
   export namespace Inputs {
     export interface ToSend {
       id: number
-      msg?: string
+      msg: string
+      file?: string
     }
   }
 
