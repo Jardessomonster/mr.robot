@@ -1,4 +1,3 @@
-import { resolve } from 'path'
 import { Database } from 'sqlite3'
 import logger from '../../helpers/logger'
 

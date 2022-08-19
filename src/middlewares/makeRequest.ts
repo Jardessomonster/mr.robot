@@ -4,6 +4,7 @@ import { BaseMiddleware } from './base/baseMiddleware'
 
 export interface BaseRequest<T> {
   body: T
+  file?: Express.Multer.File
   headers?: Record<string, unknown>
   query?: Record<string, unknown>
   params?: Record<string, unknown>

@@ -1,3 +1,5 @@
+import multer from 'multer'
+import path from 'path'
 import Router from 'express-promise-router'
 import { Whatsapp } from 'venom-bot'
 
@@ -13,6 +15,19 @@ import {
   ListCampaignController,
   SendController
 } from '../controllers'
+
+const config = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, './tmp/img/')
+  },
+  filename: (req, file, cb) => {
+    cb(null, Date.now() + path.extname(file.originalname))
+  }
+})
+
+const upload = multer({
+  storage: config
+})
 
 export const entryPoint = (client: Whatsapp) => {
   const router = Router()
@@ -34,12 +49,12 @@ export const entryPoint = (client: Whatsapp) => {
 
   router.post(
     '/send-to-campaign',
+    upload.single('file'),
     MakeRequest.make(SendDto),
     new SendController(client)
       .handler
       .bind(new SendController(client))
   )
-
 
   // router.get('/get-all', async (_, res) => {
   //   const people = await new ListPeopleRepository().execute()

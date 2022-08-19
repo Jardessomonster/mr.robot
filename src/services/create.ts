@@ -24,11 +24,9 @@ export class CreateService implements PeopleContracts.CreateNumbersByCsv {
         campaignId: campaign.id
       })
       logger.log('People inserted on queue...')
-      return 
     }
     catch(error) {
       logger.error('Something went wrong: ', error)
-      return
     }
 
   }

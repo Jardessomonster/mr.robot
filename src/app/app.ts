@@ -7,6 +7,8 @@ import logger from '../helpers/logger'
 
 import { entryPoint } from './routes'
 
+import { saveAllContacts } from '../services/whatsapp/saveAllContacts'
+
 export class Application {
   constructor() {
     this.initiatlize()
@@ -17,7 +19,8 @@ export class Application {
     const port = process.env.PORT ?? 3000
     // initialize whatsapp client
     const client = await new WhatsappProvider().connect()
-
+    // await saveAllContacts(client)
+    
     app.use(express.json())
     app.use(express.urlencoded({ extended: true }))
     app.use(entryPoint(client))

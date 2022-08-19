@@ -14,7 +14,10 @@ export class SendController {
 
   async handler(req: BaseRequest<SendDto>, res: Response) {
     const sendMessageService = new SendMessageService(this.client)
-    await sendMessageService.execute(req.body)
+    await sendMessageService.execute({
+      ...req.body,
+      file: req.file?.path
+    })
     
     return res.status(204).json()
   }
