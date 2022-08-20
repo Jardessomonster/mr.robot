@@ -29,6 +29,7 @@
   },
   "devDependencies": {
     "@types/express": "^4.17.13",
+    "@types/spinnies": "^0.5.0",
     "@types/sqlite3": "^3.1.8",
     "tsconfig-paths": "^4.0.0"
   }

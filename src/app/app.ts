@@ -3,11 +3,13 @@ import express from 'express'
 import { SqliteDB } from '../providers/database'
 import { WhatsappProvider } from '../providers/whatsapp'
 
-import logger from '../helpers/logger'
+import logger from '../utils/logger'
 
 import { entryPoint } from './routes'
 
 import { saveAllContacts } from '../services/whatsapp/saveAllContacts'
+
+import { eventHandler } from '../helpers/whatsappEventHandler'
 
 export class Application {
   constructor() {
@@ -19,6 +21,7 @@ export class Application {
     const port = process.env.PORT ?? 3000
     // initialize whatsapp client
     const client = await new WhatsappProvider().connect()
+    await eventHandler(client)
     // await saveAllContacts(client)
     
     app.use(express.json())

@@ -1,5 +1,5 @@
 import { Database } from 'sqlite3'
-import logger from '../helpers/logger'
+import logger from '../utils/logger'
 
 export class CreateDatabaseRepository {
   private createCampaign(db: Database) {

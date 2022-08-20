@@ -2,7 +2,7 @@ import { Database, OPEN_READWRITE } from 'sqlite3'
 
 import { CreateDatabaseRepository } from '../repositories/createDatabase'
 
-import logger from '../helpers/logger'
+import logger from '../utils/logger'
 
 export class SqliteDB {
   constructor(

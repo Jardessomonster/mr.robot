@@ -6,7 +6,7 @@ import { PeopleContracts } from '../models/people/contract'
 
 import { CreateCampaignRepostiory } from '../repositories/campaign/create'
 
-import logger from '../helpers/logger'
+import logger from '../utils/logger'
 
 import { createManyPeopleQueue } from '../helpers/createManyPeopleQueue'
 

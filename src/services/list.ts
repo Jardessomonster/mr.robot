@@ -3,7 +3,7 @@ import { CampaignModel } from '../models/campaign/model'
 
 import { ListCampaignRepository } from '../repositories/campaign/list'
 
-import logger from '../helpers/logger'
+import logger from '../utils/logger'
 
 export class ListService implements PeopleContracts.ListCreated {
   async execute(): Promise<CampaignModel.Base[]> {

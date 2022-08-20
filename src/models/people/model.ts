@@ -5,7 +5,7 @@ export namespace PeopleModel {
     phone: string
   }
 
-  export type ToCreate = Base
+  export type ToCreate = Omit<Base, 'id'>
 
   export type FromCsv = Partial<Base>
 }

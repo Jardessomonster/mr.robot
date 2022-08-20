@@ -1,4 +1,4 @@
-import logger from '../../helpers/logger'
+import logger from '../../utils/logger'
 import { PeopleContracts } from '../../models/people/contract'
 
 import { BaseRepository } from '../common/baseRepository'
