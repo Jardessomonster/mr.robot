@@ -7,13 +7,15 @@ import { MakeRequest } from '../middlewares/makeRequest'
 
 import { 
   CreateDto,
-  SendDto
+  SendDto,
+  SendAllContactsDto
 } from '../dto'
 
 import { 
   CreateController,
   ListCampaignController,
-  SendController
+  SendController,
+  SendAllContactsController
 } from '../controllers'
 
 const config = multer.diskStorage({
@@ -54,6 +56,15 @@ export const entryPoint = (client: Whatsapp) => {
     new SendController(client)
       .handler
       .bind(new SendController(client))
+  )
+
+  router.post(
+    '/send-to-campaign',
+    upload.single('file'),
+    MakeRequest.make(SendAllContactsDto),
+    new SendAllContactsController(client)
+      .handler
+      .bind(new SendAllContactsController(client))
   )
 
   // router.get('/get-all', async (_, res) => {

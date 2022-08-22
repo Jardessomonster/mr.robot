@@ -8,7 +8,6 @@ import { SendDto } from '../../dto'
 import { SendMessageService } from '../../services/whatsapp/send'
 
 import { FindPeopleRepository } from '../../repositories/people/find'
-import { CreatePersonRepository } from '../../repositories/people/create'
 
 export class SendController {
   constructor (
