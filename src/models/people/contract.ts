@@ -12,6 +12,17 @@ export namespace PeopleContracts {
       peopleToCreate: PeopleModel.ToCreate[]
       campaignId: number
     }
+
+    export interface ToCreatePerson {
+      personToCreate: PeopleModel.ToCreate
+      campaignId: number
+    }
+
+    export interface ToSetAllow {
+      isAllowed: boolean
+      phone: string
+      campaignId: number
+    }
   }
 
   export namespace Outputs {
@@ -23,5 +34,9 @@ export namespace PeopleContracts {
 
   export interface ListCreated {
     execute(): Promise<CampaignModel.Base[]>
+  }
+
+  export interface CreatePerson {
+    execute(input: Inputs.ToCreatePerson): Promise<void>
   }
 }

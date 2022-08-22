@@ -1,4 +1,5 @@
 import { Database } from 'sqlite3'
+
 import logger from '../utils/logger'
 
 export class CreateDatabaseRepository {
@@ -21,6 +22,7 @@ export class CreateDatabaseRepository {
           id INTEGER PRIMARY KEY AUTOINCREMENT,
           name TEXT,
           phone TEXT,
+          is_allowed BOOLEAN,
           campaign_id INTEGER NOT NULL,
           FOREIGN KEY (campaign_id)
             REFERENCES campaign (id)

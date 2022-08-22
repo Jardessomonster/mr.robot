@@ -1,4 +1,5 @@
 import { Database } from 'sqlite3'
+
 import logger from '../../utils/logger'
 
 import { SqliteDB } from '../../providers/database'

@@ -1,16 +1,16 @@
 import { randomBytes } from 'crypto'
 
-import { CsvFileDto } from '../dto/csv/csvFile.dto'
+import { CsvFileDto } from '../../dto/csv/csvFile.dto'
 
-import { PeopleContracts } from '../models/people/contract'
+import { PeopleContracts } from '../../models/people/contract'
 
-import { CreateCampaignRepostiory } from '../repositories/campaign/create'
+import { CreateCampaignRepostiory } from '../../repositories/campaign/create'
 
-import logger from '../utils/logger'
+import logger from '../../utils/logger'
 
-import { createManyPeopleQueue } from '../helpers/createManyPeopleQueue'
+import { createManyPeopleQueue } from '../../helpers/createManyPeopleQueue'
 
-export class CreateService implements PeopleContracts.CreateNumbersByCsv {
+export class CreateManyService implements PeopleContracts.CreateNumbersByCsv {
   async execute({ file, name }: PeopleContracts.Inputs.ToCreateNumbers): Promise<void> {
     try {
       logger.log('Creating people by csv...')

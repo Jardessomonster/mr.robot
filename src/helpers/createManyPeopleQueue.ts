@@ -7,7 +7,7 @@ export const createManyPeopleQueue = async (data: any) => {
   await queue.push(data)
 }
 
-const worker = async (data: any) => {
+const worker = async (data: any,) => {
   const createManyPeople = new CreateManyPeopleRepository()
   await createManyPeople.execute(data)
 }

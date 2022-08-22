@@ -1,8 +1,7 @@
 import { object, string, mixed, number } from 'yup'
 
-const SendSchema = object({
+const SendAllContactsSchema = object({
   id: number().required(),
-  phone: string().required(),
   msg: string().required(),
   file: mixed().notRequired(),
   fileMsg: string().notRequired()
@@ -10,23 +9,21 @@ const SendSchema = object({
 
 interface SendData {
   id: number
-  phone: string
   msg: string
   file?: Express.Multer.File
   fileMsg?: string
 }
 
-export class SendDto {
+export class SendAllContactsDto {
   constructor (
     public id: number,
-    public phone: string,
     public msg: string,
     public file?: Express.Multer.File,
     public fileMsg?: string
   ) {}
   
   static from (data: SendData) {
-    const { id, phone, msg, file, fileMsg } = SendSchema.validateSync(data)
-    return new SendDto(id, phone, msg, file, fileMsg)
+    const { id, msg, file, fileMsg } = SendAllContactsSchema.validateSync(data)
+    return new SendAllContactsDto(id, msg, file, fileMsg)
   }
 }

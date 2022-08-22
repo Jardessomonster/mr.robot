@@ -48,7 +48,7 @@ export const entryPoint = (client: Whatsapp) => {
   )
 
   router.post(
-    '/send-to-campaign',
+    '/send',
     upload.single('file'),
     MakeRequest.make(SendDto),
     new SendController(client)

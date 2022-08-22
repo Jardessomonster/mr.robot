@@ -3,7 +3,6 @@ import { readFileSync } from 'fs'
 import { PeopleModel } from '../../models/people/model'
 
 export class CsvFileDto {
-  // TODO: remove recol name mock
   static read(path: string): PeopleModel.ToCreate[] {
     const file = readFileSync(path, 'utf-8')
     const numbers = file.split('\n').map(
@@ -11,7 +10,7 @@ export class CsvFileDto {
         const phone = number.trim()
         return {
           phone,
-          name: 'Recol Customer'
+          name: 'Sem Nome'
         }
       }
     )

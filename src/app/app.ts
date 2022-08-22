@@ -7,9 +7,9 @@ import logger from '../utils/logger'
 
 import { entryPoint } from './routes'
 
-import { saveAllContacts } from '../services/whatsapp/saveAllContacts'
+import { saveAllContacts } from '../services/whatsapp/createAllContacts'
 
-import { eventHandler } from '../helpers/whatsappEventHandler'
+import { eventHandler } from '../events/whatsappEventHandler'
 
 export class Application {
   constructor() {
