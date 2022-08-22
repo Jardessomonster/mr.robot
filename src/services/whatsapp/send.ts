@@ -27,6 +27,8 @@ implements MessageContract.SendMessageService {
       phone,
       msg
     )
+    .then(msg => logger.success('message sended: ', msg))
+    .catch(error => logger.error(error))
 
     if (file) 
       await this.client.sendImage(
@@ -35,6 +37,8 @@ implements MessageContract.SendMessageService {
         'image',
         fileMsg
       )
+      .then(msg => logger.success('message sended: ', msg))
+      .catch(error => logger.error(error))
   
     logger.success(`Message sended to ${person.name} of phone ${person.phone}`)
   }

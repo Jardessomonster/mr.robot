@@ -6,11 +6,11 @@ import { FindPeopleRepository } from '../repositories/people/find'
 
 import logger from './logger'
 
-const FULL_DAY = 86400000
+const TWO_HOURS = 7200000
 
 export const sendMessageError: errorHandler = async (error, task) => {
   if (error?.message === 'Not a accepted contact') {
-    await new Promise(resolve => setTimeout(resolve, FULL_DAY))
+    await new Promise(resolve => setTimeout(resolve, TWO_HOURS))
 
     try {
       const { client, msgData } = task

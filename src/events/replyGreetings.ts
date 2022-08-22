@@ -6,7 +6,7 @@ import { CreateService } from '../services/people/create'
 
 import { IsAllowedRepository } from '../repositories/people/isAllowed'
 
-import { formatFromWpp } from '../helpers/formatPhoneNumber'
+import { formatFromWpp, formatToWpp } from '../helpers/formatPhoneNumber'
 
 export const replyGreetings = async (client: Whatsapp, msg: Message) => {
   const phone = formatFromWpp(msg.from)
@@ -32,6 +32,11 @@ const affirmative = async (client: Whatsapp, msg: Message, phone: string) => {
   })
 
   await defaultMsg(client, msg.from)
+
+  await client.sendContactVcard(
+    msg.from,
+    formatToWpp('6899652210')
+  )
 }
 
 const negative = async (client: Whatsapp, msg: Message, phone: string) => {
