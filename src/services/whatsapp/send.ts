@@ -1,9 +1,12 @@
 import { greetings } from '../../events/greetings'
+
 import { formatToWpp } from '../../helpers/formatPhoneNumber'
 
 import { MessageContract } from '../../models/message/contract'
 
 import { WhatsappService } from './base'
+
+import logger from '../../utils/logger'
 
 export class SendMessageService extends WhatsappService 
 implements MessageContract.SendMessageService {
@@ -11,8 +14,10 @@ implements MessageContract.SendMessageService {
     const phone = formatToWpp(person.phone)
 
     if (!person.isAllowed) {
-      if (person.isAllowed == false)
-        return 
+      if (person.isAllowed == false) {
+        logger.error(`${person.name} of phone ${person.phone}, didn't allow reciving messeges`)
+        return
+      }
 
       greetings(this.client, phone)
       throw new Error('Not a accepted contact')
@@ -22,8 +27,6 @@ implements MessageContract.SendMessageService {
       phone,
       msg
     )
-    .then(msg => console.log(msg))
-    .catch(error => console.error(error))
 
     if (file) 
       await this.client.sendImage(
@@ -32,7 +35,7 @@ implements MessageContract.SendMessageService {
         'image',
         fileMsg
       )
-      .then(msg => console.log(msg))
-      .catch(error => console.error(error))
+  
+    logger.success(`Message sended to ${person.name} of phone ${person.phone}`)
   }
 }

@@ -7,6 +7,8 @@ import { WhatsappService } from './base'
 
 import { sendMessegeToAllQueue } from '../../helpers/sendMessegeToAllQueue'
 
+import logger from '../../utils/logger'
+
 export class SendMessageToAllService extends WhatsappService 
 implements MessageContract.SendMessageToAllService {
   async execute({ campaignId, msg, file, fileMsg }: MessageContract.Inputs.ToSendAllContacts): Promise<void> {
@@ -17,17 +19,22 @@ implements MessageContract.SendMessageToAllService {
     const people = await new ListPeopleRepository().execute(campaign.id)
 
     people.forEach(async (person) => {
-      const msgData = {
-        person,
-        msg,
-        file,
-        fileMsg
+      try {
+        const msgData = {
+          person,
+          msg,
+          file,
+          fileMsg
+        }
+  
+        await sendMessegeToAllQueue({
+          client: this.client,
+          msgData
+        })
       }
-
-      await sendMessegeToAllQueue({
-        client: this.client,
-        msgData
-      })
+      catch (error: any) {
+        logger.error(error)
+      }
     })
   }
 }

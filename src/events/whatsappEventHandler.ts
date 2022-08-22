@@ -1,6 +1,6 @@
 import { Whatsapp } from 'venom-bot'
-import { misunderstood } from './common/misunderstood'
 
+import { misunderstood } from './common/misunderstood'
 import { greetings } from './greetings'
 import { replyGreetings } from './replyGreetings'
 
