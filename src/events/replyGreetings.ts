@@ -2,6 +2,8 @@ import { Whatsapp, Message } from 'venom-bot'
 
 import { defaultMsg } from './common/defaultMsg'
 
+import { DefaultIds } from '../models/campaign/model'
+
 import { CreateService } from '../services/people/create'
 
 import { IsAllowedRepository } from '../repositories/people/isAllowed'
@@ -16,7 +18,7 @@ export const replyGreetings = async (client: Whatsapp, msg: Message) => {
       name: msg.notifyName ?? 'Sem nome',
       phone,
     },
-    campaignId: 2
+    campaignId: DefaultIds.newContacts
   })
 
   msg.body === 'Sim'
@@ -28,7 +30,7 @@ const affirmative = async (client: Whatsapp, msg: Message, phone: string) => {
   await new IsAllowedRepository().execute({
     isAllowed: true,
     phone,
-    campaignId: 2
+    campaignId: DefaultIds.newContacts
   })
 
   await defaultMsg(client, msg.from)
@@ -43,7 +45,7 @@ const negative = async (client: Whatsapp, msg: Message, phone: string) => {
   await new IsAllowedRepository().execute({
     isAllowed: false,
     phone,
-    campaignId: 2
+    campaignId: DefaultIds.newContacts
   })
 
   await client.sendText(
