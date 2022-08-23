@@ -1,6 +1,6 @@
-import { Whatsapp, Message } from 'venom-bot'
+import { Whatsapp } from 'venom-bot'
 
-import { buttons } from './common/button'
+import { buttons } from './'
 
 const INTRODUCTION = `Olá, me chamo Mr Robot, sou um robô de propaganda com foco em publicidade via Whatsapp.
 
