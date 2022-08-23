@@ -10,8 +10,10 @@
     "build": "tsc",
     "start": "node build/server.js",
     "dev": "npx ts-node -r dotenv/config -r tsconfig-paths/register server.ts",
-    "dev normalize": "npx ts-node src/utils/normalizeDatabase.ts",
-    "normalize": "node build/normalize.js"
+    "normalize:dev": "npx ts-node src/utils/normalizeDatabase.ts",
+    "normalize": "node build/normalize.js",
+    "fill:db:dev": "npx ts-node src/utils/fillDatabase.ts",
+    "fill:db": "node build/utils/fillDatabase.js"
   },
   "author": "jrjar",
   "license": "MIT",

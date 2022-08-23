@@ -11,7 +11,6 @@ export class CreateDatabaseRepository {
           name TEXT
         )
     `
-
     return db.run(sql)
   }
 
@@ -28,7 +27,6 @@ export class CreateDatabaseRepository {
             REFERENCES campaign (id)
         )
     `
-    
     return db.run(sql)
   }
 
