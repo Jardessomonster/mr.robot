@@ -10,6 +10,8 @@ import { IsAllowedRepository } from '../repositories/people/isAllowed'
 
 import { formatFromWpp, formatToWpp } from '../helpers/formatPhoneNumber'
 
+import logger from '../utils/logger'
+
 export const replyGreetings = async (client: Whatsapp, msg: Message) => {
   const phone = formatFromWpp(msg.from)
 
@@ -39,6 +41,8 @@ const affirmative = async (client: Whatsapp, msg: Message, phone: string) => {
     msg.from,
     formatToWpp('6899652210')
   )
+  .then((msg) => logger.success('Message sended', msg))
+  .catch(error => logger.error('Error: ', error))
 }
 
 const negative = async (client: Whatsapp, msg: Message, phone: string) => {
@@ -52,4 +56,6 @@ const negative = async (client: Whatsapp, msg: Message, phone: string) => {
     msg.from,
     'Caso mude de ideia, você ainda pode apertar sim! ;)'
   )
+  .then((msg) => logger.success('Message sended', msg))
+  .catch(error => logger.error('Error: ', error))
 }

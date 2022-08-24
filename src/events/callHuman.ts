@@ -22,7 +22,7 @@ export const callHuman = (
     .then(people => {
       // In case there is no human to pick up
       if (!people.length) {
-        client.sendText(
+        return client.sendText(
           to,
           'Infelizmente não há humanos cadastrados para atende-lo!'
         )
