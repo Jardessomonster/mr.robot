@@ -9,7 +9,6 @@ export class CreateHumansService implements PeopleContracts.CreateHuman {
   async execute({ humansToCreate }: PeopleContracts.Inputs.ToCreateHuman): Promise<void> {
     try {
       logger.log('Creating humans')
-      console.table(humansToCreate)
       await createManyPeopleQueue({
         peopleToCreate: humansToCreate,
         campaignId: DefaultIds.humans
