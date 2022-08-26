@@ -18,6 +18,10 @@ export namespace PeopleContracts {
       campaignId: number
     }
 
+    export interface ToCreateHuman {
+      humansToCreate: PeopleModel.ToCreate[]
+    }
+
     export interface ToSetAllow {
       isAllowed: boolean
       phone: string
@@ -38,5 +42,9 @@ export namespace PeopleContracts {
 
   export interface CreatePerson {
     execute(input: Inputs.ToCreatePerson): Promise<void>
+  }
+
+  export interface CreateHuman {
+    execute(input: Inputs.ToCreateHuman): Promise<void>
   }
 }

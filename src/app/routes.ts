@@ -16,9 +16,9 @@ import {
   ListCampaignController,
   SendController,
   SendAllContactsController,
-  CreateHumanController
 } from '../controllers'
 import { CreateHumanDto } from '../dto/createHuman.dto'
+import { CreateHumansController } from '../controllers/people/createHumans'
 
 const config = multer.diskStorage({
   destination: (req, file, cb) => {
@@ -54,7 +54,7 @@ export const entryPoint = (client: Whatsapp) => {
   router.post(
     '/human',
     MakeRequest.make(CreateHumanDto),
-    new CreateHumanController()
+    new CreateHumansController()
       .handler
   )
 

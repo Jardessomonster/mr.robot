@@ -2,7 +2,7 @@ import { CampaignModel } from '../../models/campaign/model'
 
 import { BaseRepository } from '../common/baseRepository'
 
-export class CreateCampaignRepostiory extends BaseRepository {
+export class CreateCampaignRepository extends BaseRepository {
   private async getCreated(): Promise<CampaignModel.Base> {
     const sql = `
       SELECT 

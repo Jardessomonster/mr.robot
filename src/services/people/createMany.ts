@@ -4,7 +4,7 @@ import { CsvFileDto } from '../../dto/csv/csvFile.dto'
 
 import { PeopleContracts } from '../../models/people/contract'
 
-import { CreateCampaignRepostiory } from '../../repositories/campaign/create'
+import { CreateCampaignRepository } from '../../repositories/campaign/create'
 
 import logger from '../../utils/logger'
 
@@ -15,7 +15,7 @@ export class CreateManyService implements PeopleContracts.CreateNumbersByCsv {
     try {
       logger.log('Creating people by csv...')
       const peopleToCreate = CsvFileDto.read(file)
-      const campaign = await new CreateCampaignRepostiory().execute({
+      const campaign = await new CreateCampaignRepository().execute({
         name: name ?? randomBytes(20).toString('hex')
       })
       

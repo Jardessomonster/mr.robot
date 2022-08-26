@@ -3,13 +3,12 @@ import { Response } from 'express'
 import { BaseRequest } from '../../middlewares/makeRequest'
 
 
-import { CreateService } from '../../services/people/create'
 import { CreateHumanDto } from '../../dto/createHuman.dto'
-import { DefaultIds } from '../../models/campaign/model'
+import { CreateHumansService } from '../../services/people/createHumans'
 
-export class CreateHumanController {
+export class CreateHumansController {
   async handler(req: BaseRequest<CreateHumanDto>, res: Response) {
-    await new CreateService().execute({ personToCreate: req.body, campaignId: DefaultIds.humans})
+    await new CreateHumansService().execute(req.body)
     return res.status(204).json()
   }
 }

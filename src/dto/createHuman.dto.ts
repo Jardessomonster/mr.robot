@@ -1,24 +1,31 @@
-import { number, object, string } from 'yup'
+import { array, object, string } from 'yup'
+import { PeopleModel } from '../models/people/model';
 
 const CreateSchema = object({
-  phone: string().required(),
-  name: string().required(),
+  humansToCreate: array()
+  .min(1)
+  .of(
+      object({
+        phone: string().required(),
+        name: string().required(),
+      })
+  )
+  .required()
 })
 
+
 interface Create {
-  phone: string
-  name: string
+  humansToCreate: PeopleModel.ToCreate[]
 }
 
 export class CreateHumanDto {
   constructor (
-    public phone: string,
-    public name: string,
+    public humansToCreate: PeopleModel.ToCreate[]
 
   ) {}
   
   static from (data: Create) {
-    const { phone, name } = CreateSchema.validateSync(data)
-    return new CreateHumanDto(phone, name)
+    const { humansToCreate } = CreateSchema.validateSync(data)
+    return new CreateHumanDto(humansToCreate)
   }
 }
